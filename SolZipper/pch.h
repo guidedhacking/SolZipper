@@ -1,4 +1,4 @@
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
@@ -10,5 +10,8 @@
 #define PCH_H
 
 // TODO: add headers that you want to pre-compile here
-
+#include <iostream>
+#include <filesystem>
+#include <windows.h>
+#include <vector>
 #endif //PCH_H
