@@ -1,5 +1,5 @@
 # SolZipper - Visual Studio Solution Archiver
-
+Version 1.0
 
 ## What does this do?
 
@@ -16,9 +16,9 @@ I haven't coded anything a while, I wanted to do something with std::filesystem 
 ## Usage
 
 Run the exe, you have 3 basic options:
-1. Install it, including the context menu handler
-2. Uninstall it
-3. Zip the folder
+1.   Install it, including the context menu handler
+2.   Uninstall it
+3.   Zip the folder
 
 You can use the right click menu or you can drag and drop your solution folder onto the .exe
 
@@ -26,9 +26,9 @@ You can use the right click menu or you can drag and drop your solution folder o
 It uses a blacklist of bad folder names and extensions like .gitignore.  It copies the good files to a temp folder.  Then it uses Powershell to zip the folder.
 
 ## TODO
-Replace powershell with actual zipping lib
-Remove ghetto exclusion filter method
-Fix exclusion false positives
+*   Replace powershell with actual zipping lib
+*   Remove ghetto exclusion filter method
+*   Fix exclusion false positives
 
 ## Development History
 Developed version 1.0

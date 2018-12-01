@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "solzipper.h"
 
-
 void TO_WCHAR_T(const char* in, wchar_t* out)
 {
 	size_t len = strlen(in) + 1;
@@ -182,7 +181,7 @@ void ZipItUp(fs::path path)
 	UnHideFiles(randfolderFull);
 
 	//Create command to zip
-	std::wstring cmd = L"powershell.exe Compress-Archive " + randfolderFull._Mystr + L" " + path._Mystr + L".zip";
+	std::wstring cmd = L"powershell.exe Compress-Archive -Force \\\"" + randfolderFull._Mystr + L"\\\" \\\"" + path._Mystr + L".zip\\\"";
 
 	//convert cmd string to work in console and exec it
 	char mbcmd[MAX_PATH];
@@ -235,7 +234,7 @@ void UnHideFiles(fs::path path)
 	{
 		//Unhiding the file
 		int attr = GetFileAttributes(dir.path().c_str());
-		if ((attr & FILE_ATTRIBUTE_HIDDEN) == FILE_ATTRIBUTE_HIDDEN) 
+		if ((attr & FILE_ATTRIBUTE_HIDDEN) == FILE_ATTRIBUTE_HIDDEN)
 		{
 			SetFileAttributes(dir.path().c_str(), attr & ~FILE_ATTRIBUTE_HIDDEN);
 		}
