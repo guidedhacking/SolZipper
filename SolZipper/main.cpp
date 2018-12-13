@@ -16,7 +16,8 @@ int wmain(int argc, wchar_t *argv[])
 	{
 		dropped = fs::path(argv[1]);
 	}
-	//else dropped = L"F:\\Projects\\SolutionZipperTester"; //put test project here if running from debugger
+	//put test project here if running from debugger
+	//else dropped = L"F:\\Projects\\ACHack Framework";
 
 	while (1)
 	{

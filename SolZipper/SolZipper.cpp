@@ -1,18 +1,20 @@
 #include "pch.h"
 #include "solzipper.h"
 
-void TO_WCHAR_T(const char* in, wchar_t* out)
+std::wstring s2ws(const std::string& str)
 {
-	size_t len = strlen(in) + 1;
-	size_t numCharsRead;
-	mbstowcs_s(&numCharsRead, out, len, in, _TRUNCATE);
+	using convert_typeX = std::codecvt_utf8<wchar_t>;
+	std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+	return converterX.from_bytes(str);
 }
 
-void TO_CHAR(const wchar_t* in, char* out)
+std::string ws2s(const std::wstring& wstr)
 {
-	size_t len = wcslen(in) + 1;
-	size_t numCharsRead;
-	wcstombs_s(&numCharsRead, out, len, in, _TRUNCATE);
+	using convert_typeX = std::codecvt_utf8<wchar_t>;
+	std::wstring_convert<convert_typeX, wchar_t> converterX;
+
+	return converterX.to_bytes(wstr);
 }
 
 void PrintMenu(fs::path dropped)
@@ -44,11 +46,11 @@ void CopyRecursive(fs::path src, fs::path dst)
 	for (auto dir : fs::recursive_directory_iterator(src))
 	{
 		//copy the path's string to store relative path string
-		std::wstring relstr = dir.path()._Mystr;
+		std::wstring relstr = dir.path().wstring();
 
 		//remove the substring matching the src path
 		//this leaves only the relative path
-		relstr.erase(0, src._Mystr.size());
+		relstr.erase(0, src.wstring().size());
 
 		//combine the destination root path with relative path
 		fs::path newFullPath = dst / relstr;
@@ -101,7 +103,7 @@ void CopyGoodFiles(fs::path src, fs::path dst)
 	//Loop through all the dirs
 	for (auto dir : fs::recursive_directory_iterator(src))
 	{
-		if (dir.path()._Mystr.find(L".suo") != std::string::npos)
+		if (dir.path().wstring().find(L".suo") != std::string::npos)
 		{
 			int x = 69;
 		}
@@ -121,12 +123,12 @@ void CopyGoodFiles(fs::path src, fs::path dst)
 		//if path matches a logged bad path, skip
 		for (auto bad : badPaths)
 		{
-			if (dir.path()._Mystr.find(L".suo") != std::string::npos)
+			if (dir.path().wstring().find(L".suo") != std::string::npos)
 			{
 				int x = 69;
 			}
 
-			if (dir.path()._Mystr.find(bad) != std::string::npos)
+			if (dir.path().wstring().find(bad) != std::string::npos)
 			{
 				bBadPath = true;
 				break;
@@ -136,11 +138,11 @@ void CopyGoodFiles(fs::path src, fs::path dst)
 		if (!bBadPath)
 		{
 			//copy the path's string to store relative path string
-			std::wstring relstr = dir.path()._Mystr;
+			std::wstring relstr = dir.path().wstring();
 
 			//remove the substring matching the src path
 			//this leaves only the relative path
-			relstr.erase(0, src._Mystr.size());
+			relstr.erase(0, src.wstring().size());
 
 			//combine the destination root path with relative path
 			fs::path newFullPath = dst / relstr;
@@ -178,15 +180,13 @@ void ZipItUp(fs::path path)
 
 	CopyGoodFiles(path, randfolderFull);
 
-	UnHideFiles(randfolderFull);
+	UnHideFiles(randfolderFull); //Compress-Archive skips them if they're hidden
 
-	//Create command to zip
-	std::wstring cmd = L"powershell.exe Compress-Archive -Force \\\"" + randfolderFull._Mystr + L"\\\" \\\"" + path._Mystr + L".zip\\\"";
+	std::wstring cmd = LR"(powershell.exe Compress-Archive -Force -path ')" + randfolderFull.wstring() + LR"(' -DestinationPath ')" + path.wstring() + LR"(.zip')";
 
 	//convert cmd string to work in console and exec it
-	char mbcmd[MAX_PATH];
-	TO_CHAR(cmd.c_str(), mbcmd);
-	system(mbcmd);
+	std::string smbcmd = ws2s(cmd);
+	system(smbcmd.c_str());
 
 	fs::remove_all(randfolder); //delete temp folder
 	std::cout << "SolZip Completed\n";

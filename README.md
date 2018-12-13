@@ -3,15 +3,17 @@ Version 1.0
 
 ## What does this do?
 
-Adds Right Click Context Menu to Windows that enables you to right click on a Visual Studio project folder and zip it up in one button click without any unnecessary VS bloat files.
+-   Quickly zips up VS projects without the unnecessary bloat files
+-   Adds Right Click Context Menu to Folders to Zip up Projects
+-   You can also Drag & Drop your VS project onto the .exe
 
 ## Why?
 
-Posting Visual Studio projects on forums in zips makes helping people 100% faster/easier than them pasting their code into the post.  But VS projects have lots of bloat and newbies don't understand what files we need so forums get bloated with this 100mb worthless attachments.
+Posting Visual Studio projects on forums in zips makes helping people 100% faster/easier than them pasting their code into the post.
 
-Obviously git is OP but newbies don't know how to use git yet.
+VS projects have lots of bloat and newbies don't understand what files we need so forums get bloated with worthless 100mb attachments.
 
-I haven't coded anything a while, I wanted to do something with std::filesystem so here it is.
+I wanted to do something with std::filesystem and encourage people to post entire projects that are easy to debug.
 
 ## Usage
 
@@ -23,7 +25,11 @@ Run the exe, you have 3 basic options:
 You can use the right click menu or you can drag and drop your solution folder onto the .exe
 
 ## How does it work?
-It uses a blacklist of bad folder names and extensions like .gitignore.  It copies the good files to a temp folder.  Then it uses Powershell to zip the folder.
+It uses a blacklist of bad folder names and extensions similar to .gitignore.  It copies the good files to a temp folder.  Then it uses Powershell to zip the folder.
+
+## Requirements
+-   Visual C++ Redistributables
+-   Powershell
 
 ## TODO
 *   Replace powershell with actual zipping lib
