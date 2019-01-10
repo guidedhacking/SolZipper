@@ -7,6 +7,9 @@ Version 1.0
 -   Adds Right Click Context Menu to Folders to Zip up Projects
 -   You can also Drag & Drop your VS project onto the .exe
 
+## Video Demo
+[![SolZipper Demo Video](http://img.youtube.com/vi/LDdOMEZz4Ik/0.jpg)](https://youtu.be/LDdOMEZz4Ik "SolZipper Demo")
+
 ## Why?
 
 Posting Visual Studio projects on forums in zips makes helping people 100% faster/easier than them pasting their code into the post.
@@ -30,6 +33,8 @@ It uses a blacklist of bad folder names and extensions similar to .gitignore.  I
 ## Requirements
 -   Visual C++ Redistributables
 -   Powershell
+
+More info & release build @ https://guidedhacking.com/resources/solzipper-easily-zip-visual-studio-projects-for-uploading.21/
 
 ## TODO
 *   Replace powershell with actual zipping lib
