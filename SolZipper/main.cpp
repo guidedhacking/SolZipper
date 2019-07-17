@@ -4,7 +4,7 @@
 fs::path dropped;
 fs::path thisExe;
 
-int wmain(int argc, wchar_t *argv[])
+int wmain(int argc, wchar_t* argv[])
 {
 	//Get Path of this process
 	thisExe = fs::path(argv[0]);

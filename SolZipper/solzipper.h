@@ -3,7 +3,7 @@
 
 namespace fs = std::experimental::filesystem;
 
-const std::wstring badFolders[] = { L"Release", L"Debug", L"ipch", L"x64", L"x86", L"Obj", L"Releases", L"Bin", L"Log", L"IPCH", L".git" };
+const std::wstring badFolders[] = { L"Release", L"Debug", L"ipch", L"x64", L"x86", L"Obj", L"Releases", L"Bin", L"Log", L"IPCH", L".git", L"bin", L"obj", L"Server" };
 const std::wstring badExtensions[] = { L".db", L".pch", L".obj", L".pdb", L".tmp", L".opendb", L".opensdf", L".VC", L".zip", L".exe", L".dll", L".sqlite", L".json" };
 const std::wstring badFilenames[] = { L"Browse.VC.db" };
 
