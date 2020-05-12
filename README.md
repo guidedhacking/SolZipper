@@ -43,3 +43,4 @@ More info & release build @ https://guidedhacking.com/resources/solzipper-easily
 
 ## Development History
 Developed version 1.0
+Developed version 1.1 support GB2312 path string
