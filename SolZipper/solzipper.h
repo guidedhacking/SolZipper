@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
-
+#include <codecvt>
+#include <experimental/filesystem> 
 namespace fs = std::experimental::filesystem;
 
 const std::wstring badFolders[] = { L"Release", L"Debug", L"ipch", L"x64", L"x86", L"Obj", L"Releases", L"Bin", L"Log", L"IPCH", L".git", L"bin", L"obj", L"Server" };

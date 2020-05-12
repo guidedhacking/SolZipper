@@ -185,8 +185,10 @@ void ZipItUp(fs::path path)
 	std::wstring cmd = LR"(powershell.exe Compress-Archive -Force -path ')" + randfolderFull.wstring() + LR"(' -DestinationPath ')" + path.wstring() + LR"(.zip')";
 
 	//convert cmd string to work in console and exec it
-	std::string smbcmd = ws2s(cmd);
-	system(smbcmd.c_str());
+	//std::string smbcmd = ws2s(cmd);
+	//system(smbcmd.c_str());
+	std::string cmd_a = "powershell.exe Compress-Archive -Force -path  '" + randfolderFull.string() + "' -DestinationPath '" + path.string() + ".zip'";
+	system(cmd_a.c_str());
 
 	fs::remove_all(randfolder); //delete temp folder
 	std::cout << "SolZip Completed\n";
