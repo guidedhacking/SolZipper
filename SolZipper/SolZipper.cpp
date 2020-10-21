@@ -1,22 +1,6 @@
 #include "pch.h"
 #include "solzipper.h"
 
-std::wstring s2ws(const std::string& str)
-{
-	using convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.from_bytes(str);
-}
-
-std::string ws2s(const std::wstring& wstr)
-{
-	using convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.to_bytes(wstr);
-}
-
 void PrintMenu(fs::path dropped)
 {
 	std::cout << "__...---=== SolZipper ===---...__\n";
@@ -185,8 +169,8 @@ void ZipItUp(fs::path path)
 	std::wstring cmd = LR"(powershell.exe Compress-Archive -Force -path ')" + randfolderFull.wstring() + LR"(' -DestinationPath ')" + path.wstring() + LR"(.zip')";
 
 	//convert cmd string to work in console and exec it
-	std::string smbcmd = ws2s(cmd);
-	system(smbcmd.c_str());
+	//std::string smbcmd = ws2s(cmd);  //
+	_wsystem(cmd.c_str());
 
 	fs::remove_all(randfolder); //delete temp folder
 	std::cout << "SolZip Completed\n";
@@ -225,7 +209,7 @@ void Uninstall()
 	//schedule file deletion
 	MoveFileEx(file.c_str(), 0, MOVEFILE_DELAY_UNTIL_REBOOT);
 	MoveFileEx(installPath.c_str(), 0, MOVEFILE_DELAY_UNTIL_REBOOT);
-	std::cout << "Uninstalled\n";
+	std::cout << "You must reboot to complete uninstallation\n";
 }
 
 void UnHideFiles(fs::path path)

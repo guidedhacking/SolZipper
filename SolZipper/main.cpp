@@ -33,20 +33,20 @@ int wmain(int argc, wchar_t* argv[])
 			{
 				switch (x)
 				{
-				case 1:
-				{
-					Install(thisExe); system("cls");  PrintMenu(dropped);  std::cout << "\nInstalled \n\nInput Next Selection\n\n"; break;
-				}
-				case 2:
-				{
-					Uninstall(); system("cls");  PrintMenu(dropped);  std::cout << "\nUninstalled \n\nInput Next Selection\n\n"; break;
-				}
-				case 3:
-				{
-					ZipItUp(dropped); system("cls");  PrintMenu(dropped); std::cout << "\nZipping complete! \n\nInput Next Selection\n\n"; break;
-				}
-				case 4: exit(0);
-				default: break;
+					case 1:
+					{
+						Install(thisExe); system("cls");  PrintMenu(dropped);  std::cout << "\nInstalled \n\nInput Next Selection\n\n"; break;
+					}
+					case 2:
+					{
+						Uninstall(); system("cls");  PrintMenu(dropped);  std::cout << "\nUninstalled \n\nInput Next Selection\n\n"; break;
+					}
+					case 3:
+					{
+						ZipItUp(dropped); system("cls");  PrintMenu(dropped); std::cout << "\nZipping complete! \n\nInput Next Selection\n\n"; break;
+					}
+					case 4: exit(0);
+					default: break;
 				}
 			}
 
